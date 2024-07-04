@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
+"""Doc Doc Doc"""
 import logging
 from typing import List
 import re
+
+
 def filter_datum(
-    fields: List[str], redaction: str, message: str, separator: str) -> str:
+    fields: List[str], redaction: str, message: str, separator: str
+) -> str:
+    """Doc Doc"""
     for field in fields:
         regex = f"{field}=[^{separator}]*"
         message = re.sub(regex, f"{field}={redaction}", message)
