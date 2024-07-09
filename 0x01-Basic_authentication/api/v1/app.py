@@ -8,6 +8,7 @@ from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 import os
 from api.v1.views import app_views
+
 auth = None
 AUTH_TYPE = getenv('AUTH_TYPE') == "auth":
 if AUTH_TYPE == 'auth':
