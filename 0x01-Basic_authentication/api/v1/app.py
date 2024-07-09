@@ -21,18 +21,19 @@ def not_found(error) -> str:
     """
     return jsonify({"error": "Not found"}), 404
 
+
 @app.errorhandler(401)
 def unauthoriezed(error):
     """doc doc"""
     return jsonify({"error": "Unauthorized"}), 401
 
+
 @app.errorhandler(403)
 def Fobidden(error):
     """dod doc"""
     return jsonify({"error": "Forbidden"}), 403
-    
 
-from api.v1.views import app_views
+
 app.register_blueprint(app_views)
 
 
