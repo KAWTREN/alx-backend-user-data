@@ -72,4 +72,3 @@ class BasicAuth(Auth):
                                                 b64_auth_header)
         user, pwd = self.extract_user_credentials(decoded_auth_header)
         return self.user_object_from_credentials(user, pwd)
-    
