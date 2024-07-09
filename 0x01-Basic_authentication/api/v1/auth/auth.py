@@ -17,6 +17,6 @@ class Auth:
         """doc doc"""
         return None
 
-    def current_user(self, request=None) -> TypeVar('User'):
+    def current_user(self, request=None) -> TypeVar('User'):  # type: ignore
         """Doc doc"""
         return None
