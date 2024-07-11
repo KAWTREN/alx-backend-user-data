@@ -24,9 +24,7 @@ class Auth:
         """Doc doc"""
         return None
 
-    def session_cookie(self, request=None):
-        """Returns a cookie value from a request"""
-        if request is None:
-            return None
-        session_name = os.getenv("SESSION_NAME")
-        return request.cookies.get(session_name)
+    def session_cookie(self, request=None) -> str:
+        """returns a cookie value from a request"""
+        if request:
+            return request.cookies.get(os.getenv("SESSION_NAME"))
