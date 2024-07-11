@@ -33,9 +33,13 @@ def before_request():
             "/api/v1/unauthorized/",
             "/api/v1/forbidden/",
         ]
-        if auth.require_auth(request.path, excluded_paths):
-            if auth is not None:
-                request.current_user = auth.current_user(request)
+        if not auth.require_auth(request.path, excluded_paths):
+            return
+
+        if auth.authorization_header(request) is None and auth.session_cookie(request) is None:
+            abort(401)
+
+        request.current_user = auth.current_user(request)
 
 
 @app.errorhandler(404)
