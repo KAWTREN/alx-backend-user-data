@@ -5,6 +5,8 @@ from sqlalchemy import create_engine  # type: ignore
 from sqlalchemy.ext.declarative import declarative_base  # type: ignore
 from sqlalchemy.orm import sessionmaker  # type: ignore
 from sqlalchemy.orm.session import Session  # type: ignore
+from sqlalchemy.exc import InvalidRequestError   # type: ignore
+from sqlalchemy.orm.exc import NoResultFound  # type: ignore
 
 from user import Base, User
 
@@ -36,3 +38,13 @@ class DB:
         self._session.add(new_user)
         self._session.commit()
         return new_user
+
+    def find_user_by(self, **kwargs) -> User:
+        """doc doc"""
+        try:
+            user = self.__session.query(User).filter_by(**kwargs).one()
+        except NoResultFound:
+            raise NoResultFound(f"No user found with {kwargs}")
+        except InvalidRequestError:
+            raise InvalidRequestError(f"Invalid query arguments: {kwargs}")
+        return user
